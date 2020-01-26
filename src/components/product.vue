@@ -4,7 +4,7 @@
       <template v-if="product.isSale">
         <div class="status">SALE</div>
       </template>
-      <img v-bind:src="product.image" alt />
+      <img v-bind:src="product.image" alt v-on:click="openModal" />
       <figcaption v-html="product.name"></figcaption>
     </figure>
     <div class="detail">
@@ -18,14 +18,29 @@
         <div class="shipping-fee">+送料 {{product.delv | number_format}}円</div>
       </template>
     </div>
+    <modal v-if="showModal" @close="showModal = false" v-bind:product="product"></modal>
   </div>
 </template>
 
 <script>
 import "./filter.js";
+import Modal from "./modal.vue";
 
 export default {
-  props: ["product"]
+  data: function() {
+    return {
+      showModal: false
+    };
+  },
+  props: ["product"],
+  components: {
+    modal: Modal
+  },
+  methods: {
+    openModal: function() {
+      this.showModal = true;
+    }
+  }
 };
 </script>
 
