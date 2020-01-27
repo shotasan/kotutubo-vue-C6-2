@@ -1,16 +1,22 @@
 <template>
-  <div class="container">
-    <product-header
-      v-bind:count="filterdList.length"
-      v-bind:showSaleItem="showSaleItem"
-      v-bind:showDelvFree="showDelvFree"
-      v-bind:sortOrder="sortOrder"
-      v-on:showSaleItemChanged="showSaleItem = !showSaleItem"
-      v-on:showDelvFreeChanged="showDelvFree = !showDelvFree"
-      v-on:sortOrderChanged="sortOrderChanged"
-    ></product-header>
-    <div class="list">
-      <product v-for="product in filterdList" v-bind:product="product" v-bind:key="product.id"></product>
+  <div>
+    <template v-for="(song, index) in songs">
+      <header :key="index">{{ song.title }}</header>
+      <h1 :key="index">{{ song.lyrics }}</h1>
+    </template>
+    <div class="container">
+      <product-header
+        v-bind:count="filterdList.length"
+        v-bind:showSaleItem="showSaleItem"
+        v-bind:showDelvFree="showDelvFree"
+        v-bind:sortOrder="sortOrder"
+        v-on:showSaleItemChanged="showSaleItem = !showSaleItem"
+        v-on:showDelvFreeChanged="showDelvFree = !showDelvFree"
+        v-on:sortOrderChanged="sortOrderChanged"
+      ></product-header>
+      <div class="list">
+        <product v-for="product in filterdList" v-bind:product="product" v-bind:key="product.id"></product>
+      </div>
     </div>
   </div>
 </template>
@@ -29,7 +35,24 @@ export default {
     return {
       showSaleItem: false,
       showDelvFree: false,
-      sortOrder: 1
+      sortOrder: 1,
+      songs: [
+        {
+          title: "赤とんぼ",
+          lyrics: "ゆうやけこやけの赤とんぼ",
+          composer: "山田工作"
+        },
+        {
+          title: "紫とんぼ",
+          lyrics: "ゆう毛やこんやけ",
+          composer: "山田山"
+        },
+        {
+          title: "黄色とんぼ",
+          lyrics: "ボンとかあの毛や苔熊野",
+          composer: "山田太郎"
+        }
+      ]
     };
   },
   methods: {
