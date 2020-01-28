@@ -1,9 +1,13 @@
 <template>
   <div>
-    <template v-for="(song, index) in songs">
+    <div v-for="(song, index) in songs" :key="index">
+      <header>{{ song.title }}</header>
+      <h1>{{ song.lyrics }}</h1>
+    </div>
+    <!-- <template v-for="(song, index) in songs">
       <header :key="index">{{ song.title }}</header>
       <h1 :key="index">{{ song.lyrics }}</h1>
-    </template>
+    </template>-->
     <div class="container">
       <product-header
         v-bind:count="filterdList.length"
